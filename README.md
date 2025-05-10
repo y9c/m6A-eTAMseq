@@ -6,7 +6,7 @@
 
 - Prepare configuration file
 
-_minimum configuration example:_
+minimum configuration example:
 
 ```yaml
 genome_index: ~/reference/genome/Homo_sapiens/hisat2_tx_3n/GRCh38.release110
@@ -29,9 +29,9 @@ samples:
       - R1: test/data/SRR21070404_1.fastq.gz
 ```
 
-_advanced configuration:_
+advanced configuration:
 
-Refer to documentation at [https://y9c.github.io/m6A-eTAMseq/](https://y9c.github.io/m6A-eTAMseq/)
+_Refer to documentation at [https://y9c.github.io/m6A-eTAMseq/](https://y9c.github.io/m6A-eTAMseq/)_
 
 - Install apptainer and run
 
@@ -49,6 +49,11 @@ This package has been tested on Linux operating systems. It requires the followi
 - [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) 8.0.0 or higher
 - [hisat2-3n](https://github.com/DaehwanKimLab/hisat2/tree/hisat-3n)
 - cutseq
+
+## Refernce and Citation
+
+- Coming soon
+- Use our [previous work](https://github.com/shunliubio/eTAM-seq_workflow) if you try to reproduce the results of the eTAMseq v1 protocol
 
 &nbsp;
 

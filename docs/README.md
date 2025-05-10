@@ -13,7 +13,7 @@ permalink: index.html
 
 {: .fs-9 }
 
-A **Enzymatic** Method for Assaying m<sup>6</sup>A Modifications at Single Base Resolution
+An **Enzymatic** Method for Assaying m<sup>6</sup>A Modifications at Single Base Resolution
 {: .fs-6 .fw-300 }
 
 ![diagram](./docs/diagram.svg)
