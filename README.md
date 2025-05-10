@@ -50,7 +50,7 @@ This package has been tested on Linux operating systems. It requires the followi
 - [hisat2-3n](https://github.com/DaehwanKimLab/hisat2/tree/hisat-3n)
 - cutseq
 
-## Refernce and Citation
+## Citation
 
 - Coming soon
 - Use our [previous work](https://github.com/shunliubio/eTAM-seq_workflow) if you try to reproduce the results of the eTAMseq v1 protocol
