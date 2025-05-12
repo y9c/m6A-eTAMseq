@@ -14,31 +14,34 @@ splice_genome: true
 
 # build in configure for the pipeline
 path:
-  # cutseq: /pipeline/micromamba/bin/cutseq
-  # samtools: /pipeline/micromamba/bin/samtools
-  # hisat3n: /pipeline/hisat2-hisat-3n/hisat-3n
-  # hisat3nbuild: /pipeline/hisat2-hisat-3n/hisat-3n-build
   cutseq: ~/.micromamba/bin/cutseq
   samtools: ~/tools/samtools/samtools
+  umicollapse: java -server -Xms8G -Xmx36G -Xss100M -jar ~/tools/UMICollapse/umicollapse.jar bam
+  markduplicates: java -server -Xms8G -Xmx36G -Xss100M -jar ~/tools/gatk-4.6.0.0/gatk-package-4.6.0.0-local.jar MarkDuplicates
   hisat3n: ~/tools/hisat2/hisat-3n
   hisat3nbuild: ~/tools/hisat2/hisat-3n-build
+  hisat3ntable: ~/tools/hisat2/hisat-3n-table
+  joinPileup: python ../../bin/join_pileup.py
+  filterSites: python ../../bin/filter_sites.py
 
 # TODO: if the genome index is not available, the pipeline will build it automatically
 genome_index: ~/reference/genome/Homo_sapiens/hisat2_tx_3n/GRCh38.release110
 
 reference:
   contamination:
-    - test/ref/contamination.fa.gz
+    - ref/contamination.fa.gz
   genes:
-    - test/ref/spikein.fa
-    - test/ref/human_rRNA.fa
+    - ref/spikein.fa
+    - ref/human_rRNA.fa
+  genome:
+    - ~/reference/genome/Homo_sapiens/GRCh38.fa
 
 samples:
   HeLa-treat-rep1:
     data:
-      - R1: test/data/SRR21070405_1.fastq.gz
-        R2: test/data/SRR21070405_2.fastq.gz
-      - R1: test/data/SRR21070406_1.fastq.gz
+      - R1: data/SRR21070405_1.fastq.gz
+        R2: data/SRR21070405_2.fastq.gz
+      - R1: data/SRR21070406_1.fastq.gz
   HeLa-treat-rep2:
     data:
-      - R1: test/data/SRR21070404_1.fastq.gz
+      - R1: data/SRR21070404_1.fastq.gz
