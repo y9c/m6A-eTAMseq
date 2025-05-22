@@ -41,14 +41,14 @@ apptainer run -B /data docker://y9ch/etamseq -c data.yaml -j 48
 
 ## Customization
 
-System Requirements
+- The data pre-processing stesps are now based on [trichromat](https://github.com/y9c/trichromat)
 
-This package has been tested on Linux operating systems. It requires the following software dependencies:
+- This package has been tested on Linux operating systems. It requires the following software dependencies:
 
-- [Python](https://www.python.org/downloads/) 3.7 or higher
-- [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) 8.0.0 or higher
-- [hisat2-3n](https://github.com/DaehwanKimLab/hisat2/tree/hisat-3n)
-- cutseq
+  - [Python](https://www.python.org/downloads/) 3.9 or higher
+  - [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) 8.0.0 or higher
+  - [hisat2-3n](https://github.com/DaehwanKimLab/hisat2/tree/hisat-3n)
+  - [cutseq](https://github.com/y9c/cutseq)
 
 ## Citation
 
