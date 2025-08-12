@@ -2,14 +2,14 @@
 
 ![diagram](./docs/diagram.svg)
 
-## Qucik start
+## Qucik start (Run in docker environment)
 
 - Prepare configuration file
 
 minimum configuration example:
 
 ```yaml
-genome_index: ~/reference/genome/Homo_sapiens/hisat2_tx_3n/GRCh38.release110
+genome_index: ~/reference/genome/Ho mo_sapiens/hisat2_tx_3n/GRCh38.release110
 
 reference:
   contamination:
@@ -39,9 +39,13 @@ _Refer to documentation at [https://y9c.github.io/m6A-eTAMseq/](https://y9c.gith
 apptainer run -B /data docker://y9ch/etamseq -c data.yaml -j 48
 ```
 
-## Customization
+## Local environment and customization
 
-- The data pre-processing stesps are now based on [trichromat](https://github.com/y9c/trichromat)
+- If you want to test the code under local environment, you can clone the repository by the following command:
+
+  ```bash
+  git clone --recurse-submodules https://github.com/y9c/m6A-eTAMseq.git
+  ```
 
 - This package has been tested on Linux operating systems. It requires the following software dependencies:
 
@@ -49,6 +53,16 @@ apptainer run -B /data docker://y9ch/etamseq -c data.yaml -j 48
   - [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) 8.0.0 or higher
   - [hisat2-3n](https://github.com/DaehwanKimLab/hisat2/tree/hisat-3n)
   - [cutseq](https://github.com/y9c/cutseq)
+
+- Run the code by snakemake
+
+  ```bash
+  snakemake -j 48 --configfile data.yaml -s Snakefile
+  ```
+
+## Changelog
+
+- The data pre-processing stesps are now based on [trichromat](https://github.com/y9c/trichromat)
 
 ## Citation
 
