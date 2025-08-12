@@ -1,14 +1,17 @@
 # build in configure for the pipeline
 path:
-  cutseq: /pipeline/micromamba/bin/cutseq
-  samtools: /pipeline/micromamba/bin/samtools
+  cutseq: /opt/app_venv/bin/cutseq
+  samtools: /pipeline/samtools/samtools
   umicollapse: java -server -Xms8G -Xmx36G -Xss100M -jar /pipeline/UMICollapse/umicollapse.jar bam
   markduplicates: java -server -Xms8G -Xmx36G -Xss100M -jar /pipeline/gatk/gatk.jar MarkDuplicates
   hisat3n: /pipeline/hisat2-hisat-3n/hisat-3n
   hisat3nbuild: /pipeline/hisat2-hisat-3n/hisat-3n-build
   hisat3ntable: /pipeline/hisat2-hisat-3n/hisat-3n-table
-  joinPileup: /pipeline/bin/join_pileup.py
-  filterSites: /pipeline/bin/filter_sites.py
+  pb: /pipeline/pbr/pbr
+  collectReadCounts: python /pipeline/script/collect_read_counts.py
+  convertPileup: python /pipeline/script/pileup_to_arrow.py
+  joinPileup: python /pipeline/script/join_pileup.py
+  filterSites: python /pipeline/script/filter_sites.py
 
 # can be "ECLIP10", "ECLIP6", "TAKARAV3", "SACSEQV3", "STRANDED", ...
 libtype: ECLIP6

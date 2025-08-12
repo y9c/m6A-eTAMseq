@@ -64,6 +64,12 @@ RUN wget -qO gatk_tmp.zip https://github.com/broadinstitute/gatk/releases/downlo
     rm -rf "gatk-${GATK_VERSION}" && \
     rm gatk_tmp.zip
 
+# -- Download and prepare pbr --
+WORKDIR /build/pbr_build
+RUN wget https://github.com/y9c/pbr/releases/download/latest-prerelease/pbr-x86_64-unknown-linux-musl.tar.gz && \
+    tar zxvf pbr-x86_64-unknown-linux-musl.tar.gz && \
+    chmod +x pbr && \
+    rm pbr-x86_64-unknown-linux-musl.tar.gz
 
 # ----------- Final Stage -----------
 FROM ghcr.io/astral-sh/uv:${UV_BASE_IMAGE_TAG} AS final
@@ -90,6 +96,7 @@ RUN apt-get update && \
 
 # Create directory structure
 RUN mkdir -p ${PIPELINE_HOME}/bin \
+             ${PIPELINE_HOME}/script \
              ${PIPELINE_HOME}/external/trichromat \
              ${PIPELINE_HOME}/umicollapse \
              ${PIPELINE_HOME}/gatk \
@@ -118,20 +125,24 @@ COPY --from=builder /build/hisat2_build/hisat-3n-table ${PIPELINE_HOME}/hisat2-h
 COPY --from=builder /build/umicollapse_build/ ${PIPELINE_HOME}/UMICollapse/
 COPY --from=builder /build/gatk_build/gatk.jar ${PIPELINE_HOME}/gatk/gatk.jar
 
+# Copy pbr (downloaded binary)
+COPY --from=builder /build/pbr_build/pbr ${PIPELINE_HOME}/pbr/pbr
+
 # Copy application-specific files
 # COPY ./bin ${PIPELINE_HOME}/bin/
 COPY ./Snakefile ./default.yaml ./entrypoint ${PIPELINE_HOME}/
 COPY ./external/trichromat/workflow/ ${PIPELINE_HOME}/external/trichromat/workflow/
 COPY ./external/trichromat/Snakefile ./external/trichromat/workflow_utils.py ./external/trichromat/default.yaml ./external/trichromat/config.schema.yaml ${PIPELINE_HOME}/external/trichromat/
-COPY ./external/trichromat/bin/ ${PIPELINE_HOME}/bin/
+COPY ./external/trichromat/bin/ ${PIPELINE_HOME}/script/
 
 
 WORKDIR /workspace
 
 # Executables for cutseq and snakemake will be in ${APP_VENV_PATH}/bin, which is on PATH
 RUN chmod +x ${PIPELINE_HOME}/entrypoint && \
-    find ${PIPELINE_HOME}/bin/ -type f -exec chmod +x {} \; && \
+    find ${PIPELINE_HOME}/script/ -type f -exec chmod +x {} \; && \
     chmod +x ${PIPELINE_HOME}/samtools/samtools && \
+    chmod +x ${PIPELINE_HOME}/pbr/pbr && \
     find ${PIPELINE_HOME}/hisat2-hisat-3n/ -maxdepth 1 -type f -exec chmod +x {} \; -o -type l -exec chmod +x {} \;
 
 ENTRYPOINT ["/pipeline/entrypoint"]
