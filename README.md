@@ -4,7 +4,7 @@
 
 ## Qucik start (Run in docker environment)
 
-- Prepare configuration file
+- Prepare configuration file (`data.yaml` for example)
 
 minimum configuration example:
 
@@ -35,9 +35,22 @@ _Refer to documentation at [https://y9c.github.io/m6A-eTAMseq/](https://y9c.gith
 
 - Install apptainer and run
 
-```bash
-apptainer run -B /data docker://y9ch/etamseq -c data.yaml -j 48
-```
+  ```bash
+  apptainer run docker://y9ch/etamseq -c data.yaml -j 48
+  ```
+
+- Note: On server without external internet access, you can use the following command to pull the docker image first:
+
+  ```bash
+  apptainer build etamseq.sif docker://y9ch/etamseq
+  apptainer run etamseq.sif -c data.yaml -j 48
+  ```
+
+- Note: If your sequencing data for reference files are under a mounted directory, you may need to add `--bind /path/to/mounted/dir` to the apptainer command line.
+
+  ```bash
+  apptainer run --bind /path/to/mounted/dir docker://y9ch/etamseq -c data.yaml -j 48
+  ```
 
 ## Local environment and customization
 

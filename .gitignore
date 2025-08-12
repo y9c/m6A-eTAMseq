@@ -4,6 +4,7 @@ log/
 tmp/
 debug_*/
 CAMSEQ_LOG_*.txt
+*.sif
 .snakemake/
 .panoptes.db
 .DS_Store
