@@ -14,13 +14,13 @@ splice_genome: true
 
 # build in configure for the pipeline
 path:
-  cutseq: ~/.micromamba/bin/cutseq
-  samtools: ~/tools/samtools/samtools
+  cutseq: ~/.local/bin/cutseq
+  samtools: ~/.pixi/bin/samtools
   umicollapse: java -server -Xms8G -Xmx36G -Xss100M -jar ~/tools/UMICollapse/umicollapse.jar bam
   markduplicates: java -server -Xms8G -Xmx36G -Xss100M -jar ~/tools/gatk-4.6.0.0/gatk-package-4.6.0.0-local.jar MarkDuplicates
-  hisat3n: ~/tools/hisat2/hisat-3n
-  hisat3nbuild: ~/tools/hisat2/hisat-3n-build
-  hisat3ntable: ~/tools/hisat2/hisat-3n-table
+  hisat3n: ~/.pixi/bin/hisat-3n
+  hisat3nbuild: ~/.pixi/bin/hisat-3n-build
+  hisat3ntable: ~/.pixi/bin/hisat-3n-table
   collectReadCounts: python ../../external/trichromat/bin/collect_read_counts.py
   pb: ~/tools/pbr/target/release/pbr
   convertPileup: python ../../external/trichromat/bin/pileup_to_arrow.py
