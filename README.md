@@ -1,3 +1,5 @@
+[![Docker](https://img.shields.io/docker/pulls/y9ch/etamseq.svg)](https://hub.docker.com/r/y9ch/etamseq)
+
 # m<sup>6</sup>A-eTAM-seq
 
 ![diagram](./docs/diagram.svg)
