@@ -11,7 +11,7 @@
 minimum configuration example:
 
 ```yaml
-genome_index: ~/reference/genome/Ho mo_sapiens/hisat2_tx_3n/GRCh38.release110
+genome_index: ~/reference/genome/Homo_sapiens/hisat2_tx_3n/GRCh38.release110
 
 reference:
   contamination:
@@ -19,6 +19,8 @@ reference:
   genes:
     - test/ref/spikein.fa
     - test/ref/human_rRNA.fa
+  genome:
+    - ~/reference/genome/Homo_sapiens/GRCh38.fa
 
 samples:
   HeLa-treat-rep1:
